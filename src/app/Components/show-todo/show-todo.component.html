@@ -1,0 +1,37 @@
+<div class="mb-3 form-check">
+  <label ms-0>Filter Tasks:</label><br/>
+  <input type="checkbox" class="form-check-input " id="checked" [(ngModel)]="checkTask.showDone" 
+  (ngModelChange)="filterTaskByCheck()"
+    >
+  <label class="form-check-label fs-6" for="checked">Done</label>
+  </div>
+  <div class="mb-3 form-check">
+  <input type="checkbox" class="form-check-input " id="unchecked" [(ngModel)]="checkTask.showUndone" 
+  (ngModelChange)="filterTaskByCheck()"
+    >
+  <label class="form-check-label fs-6" for="unchecked">UnDone</label>
+</div>
+<div class="card-group text-bg-light ">
+<div class="card-body row align-items-start justify-content-start ps-3">
+  <div  class="container col-4 mb-4 text-break" 
+   *ngFor="let todo of searchTodos| slice:(page-1)*pageSize:(page-1)*pageSize+pageSize; index as i">
+    <h4 [ngClass]="{'strike':todo.checked}">{{todo.title}}</h4>
+    <p class="text-secondary" [ngClass]="{'strike':todo.checked}">{{todo.description}}</p>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input " id="check{{i}}" (click)="checkChanged(todo)"
+        [checked]="todo.checked">  
+      <label class="form-check-label fs-6" for="check{{i}}">Done</label>
+    </div>
+    <div>
+      <button (click)="openDelModal(todo)" class="btn btn-outline-dark btn-sm">Delete</button>
+    </div>   
+  </div>
+</div>
+</div>  
+<footer class="fixed-bottom" >
+  <div class="position-absolute bottom-0 start-50 translate-middle-x">
+  <ngb-pagination [boundaryLinks]="true" 
+  [pageSize]="pageSize" [(page)]="page" [collectionSize]="searchTodos.length"></ngb-pagination>
+  </div>
+   
+</footer>

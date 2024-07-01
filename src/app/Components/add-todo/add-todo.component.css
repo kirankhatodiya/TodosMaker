@@ -1,0 +1,8 @@
+.is-invalid
+{
+    outline: 0.10rem solid red;
+}
+.changeColor:hover
+{
+    color:white;
+}

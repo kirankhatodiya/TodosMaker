@@ -1,0 +1,25 @@
+<div class="mt-3 container">
+  <div class="modal-header">
+    <h5 class="modal-title">Add Todo:</h5>
+    <button type="button" class="btn-close " (click)="activeModal.dismiss()"></button>
+  </div>
+  <form class="modal-body" (ngSubmit)="addTodo()" [formGroup] = "group1">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" required="required" class="form-control" formControlName= "title" [(ngModel)]="title"
+      [ngClass]="{ 'is-invalid': submitted && f.title.errors?.required}" id="title">
+    </div>                                          
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <input type="text" class="form-control" id="desc" 
+      [ngClass]="{'is-invalid': submitted && f.description.errors?.required}"
+      formControlName="description" [(ngModel)]="description" name="description">
+                         
+      <input class="form-control" type="text" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" readonly/>
+      <button type="button" class="btn btn-outline-dark" (click)="d.toggle()"><i class="bi bi-calendar4"></i></button>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button type="submit" class="btn btn-outline-dark btn-sm changeColor">Add Task</button>
+    </div>
+  </form>
+</div>               

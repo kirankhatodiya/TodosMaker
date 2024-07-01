@@ -1,0 +1,22 @@
+<div style="margin: 0px;">
+    <nav class="navbar m-0 text-white bg-light">
+
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand mb-0 h1">ToDo List</a>
+            <div class="ms-auto d-flex">
+                <button class="btn btn-outline-dark btn-sm me-2 smlbtn" (click)="openAddTodo()" type="submit">Add
+                    Task</button>
+                
+                    
+                    <input class="form-control me-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="search"
+                     placeholder="Task..." aria-label="Search">
+            </div>                     
+        </div>
+    </nav>
+</div>
+<div>
+    <div class="container" class="mt-5 ms-5 me-5">
+        <app-show-todo [todos]="todos" (todoDelete)="deleteTodo($event)"  [search]="search"
+            (checkClicked)="changeChecked($event)"></app-show-todo>
+    </div>
+</div>
